@@ -18,7 +18,6 @@ function Login() {
   }, [user, loading]);
   return (
     <div className="">
-      <form>
         <div className="mb-6">
           <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             Your email
@@ -64,14 +63,12 @@ function Login() {
           </div>
         </div>
         <button
-          type="submit"
           onClick={() => logInWithEmailAndPassword(email, password)}
           className="mr-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Login
         </button>
         <button
-          type="submit"
           onClick={signInWithGoogle}
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
@@ -83,7 +80,6 @@ function Login() {
         <div>
           Don't have an account? <Link to="/register">Register</Link> now.
         </div>
-      </form>
     </div>
   );
 }

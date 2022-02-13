@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
@@ -17,12 +16,7 @@ import {
   where,
   addDoc,
 } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDKpPewSSAPlFJgMPcOqmROuYO-xIJYEC4",
   authDomain: "trade-4f14b.firebaseapp.com",
@@ -33,15 +27,12 @@ const firebaseConfig = {
   measurementId: "G-YBLEK4Q7YD",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-//----
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 const googleProvider = new GoogleAuthProvider();
+
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
@@ -64,8 +55,7 @@ const signInWithGoogle = async () => {
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
-    const user = await signInWithEmailAndPassword(auth, email, password);
-    alert(user);
+    await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -102,23 +92,12 @@ const logout = () => {
   signOut(auth);
 };
 
-// export {
-//   auth,
-//   db,
-//   signInWithGoogle,
-//   logInWithEmailAndPassword,
-//   registerWithEmailAndPassword,
-//   sendPasswordReset,
-//   logout,
-// };
-
 export {
   auth,
   db,
+  signInWithGoogle,
   logInWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  logout,
   registerWithEmailAndPassword,
   sendPasswordReset,
-  signInWithGoogle,
+  logout,
 };
