@@ -6,7 +6,7 @@ import Reset from "./Reset";
 import Dashboard from "./Dashboard";
 function App() {
   return (
-    <div className="container mx-auto">
+    <div className="">
       <Router>
         <Routes>
           <Route exact path="/" element={<Login />} />
