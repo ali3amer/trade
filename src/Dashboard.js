@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import Navbar from "./components/Navbar";
 
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
@@ -13,8 +14,8 @@ function Dashboard() {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
+      console.log(doc);
       const data = doc.docs[0].data();
-
       setName(data.name);
     } catch (err) {
       console.error(err);
@@ -31,14 +32,15 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      <div className="dashboard__container">
+      <Navbar />
+      {/* <div className="dashboard__container">
         Logged in as
         <div>{name}</div>
         <div>{user?.email}</div>
         <button className="dashboard__btn" onClick={logout}>
           Logout
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
