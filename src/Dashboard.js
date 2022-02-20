@@ -14,8 +14,9 @@ function Dashboard() {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
-      // const data = doc.docs[0].data();
-      // setName(data.name);
+
+      const data = doc.docs[0].data();
+      setName(data.name ? data.name : data.email);
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
@@ -86,7 +87,9 @@ function Dashboard() {
 
               <div className="relative inline-block ">
                 <button className="relative flex items-center p-2 text-sm text-gray-600 bg-white border border-transparent rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300 dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none">
-                  <span className="mx-1">Jane Doe</span>
+                  <span className="mx-1" onClick={logout}>
+                    {name}
+                  </span>
                   <svg
                     className="w-5 h-5 mx-1"
                     viewBox="0 0 24 24"
@@ -110,7 +113,7 @@ function Dashboard() {
         <Sidebar />
         <div className="w-full h-full p-4 m-8 overflow-y-auto">
           <div className="flex items-center justify-center p-16 mr-8 border-4 border-dotted lg:p-40">
-            Content...
+            <button onClick={logout}>Log out</button>
           </div>
         </div>
       </div>
